@@ -1,12 +1,12 @@
 {
   "name": "pcbay",
   "version": "1.0.0",
-  "description": "A little chat platform",
-  "main": "index.js",
+  "description": "A little chat platform.",
+  "main": "client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Shit-Dev-Trio",
+  "license": "GNU .30"
 }
