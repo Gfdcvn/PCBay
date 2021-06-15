@@ -1,21 +1,21 @@
-const express = require('express');
-const path = require('path');
-const logger = require('./tools/logger.js');
+const http = require('http');
+const WebSocketServer = require('websocket').server;
 
-const app = express();
+const server = http.createServer();
+server.listen(9898);
 
-app.use(
-    express.static(path.resolve(__dirname, '..', 'public'), {
-        extensions: ['html', 'htm'],
-        index: false
-    })
-);
-
-app.get('/', (_req, res) => {
-    return res.redirect('/home');
+const wsServer = new WebSocketServer({
+    httpServer: server
 });
 
-app.listen(8000, () => {
-    console.clear();
-    logger('Running on http://localhost:8000/', 'info');
+wsServer.on('request', function(request) {
+    const connection = request.accept(null, request.origin);
+
+    connection.on('message', function(message) {
+        console.log('Received Message:', message.utf8Data);
+        connection.sendUTF('Hi this is WebSocket server!');
+    });
+    connection.on('close', function(reasonCode, description) {
+        console.log('Client has disconnected.');
+    });
 });
