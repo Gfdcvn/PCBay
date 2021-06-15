@@ -2,7 +2,7 @@ const ws = new WebSocket('ws://localhost:9898');
 
 ws.onopen = function (){
     console.log('Websocket Client Connected');
-    ws.send("CLIENT: Hello, server!");
+    ws.send("CLIENT: Connected");
 };
 
 function send(message){
@@ -10,5 +10,6 @@ function send(message){
 }
 
 ws.onmessage = function (e){
-    console.log("Recieved: '" + e.data + "'")
+    console.log("Server: '" + e.data + "'")
+    document.getElementById("log").innerHTML += "Server:" + e.data + "\n";
 };
