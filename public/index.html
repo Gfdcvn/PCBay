@@ -6,8 +6,8 @@
 </head>
 <body>
 <noscript>Hey you! Enable javascript! You need it for PCBay to work!</noscript>
-<input value="value"></input><br>
-<button onclick="send"></button>
+<input id="message"></input><br>
+<button onclick="send(document.getElementById('message').value.toString());">Send to server</button>
 </body>
 <script src="../src/client.js"></script>
 </html>
